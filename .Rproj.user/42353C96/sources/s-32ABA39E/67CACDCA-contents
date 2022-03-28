@@ -1,0 +1,29 @@
+---
+title: "National Park and Monument Names for 'filter_nps' Function"
+author: "Kyle Lima"
+date: "3/27/2022"
+output:
+  html_document:
+    theme: readable
+---
+
+```{r setup, include=FALSE}
+require(rgdal)
+require(utils)
+
+
+nps.bounds <- readOGR("nps_boundary.shp"), verbose = FALSE)
+
+```
+
+## List of National Parks and Monuments
+<br>
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+sp.list <- sp.list[,-1]
+
+knitr::kable(sp.list, col.names = c('Plant code', 'Scientific name', 'Common name'))
+
+```
+<br>
+<br>

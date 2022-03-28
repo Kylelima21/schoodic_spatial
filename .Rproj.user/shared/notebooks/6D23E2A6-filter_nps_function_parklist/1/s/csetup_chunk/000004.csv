@@ -1,0 +1,6 @@
+"0","nps.bounds <- readOGR(unzip(""nps_bound.zip"", ""nps_boundary.shp""), verbose = FALSE)
+"
+"2","error 1 in extracting from zip file"
+"2","Error in readOGR(unzip(""nps_bound.zip"", ""nps_boundary.shp""), verbose = FALSE) : 
+  is.character(dsn) is not TRUE
+"
