@@ -1,12 +1,13 @@
 #' @title filter_nps: Filter a dataset by records inside a national park/monument.
 #' @author Kyle Lima
 #'
-#' @importFrom sp coordinates proj4string over
+#' @importFrom sp coordinates over
 #' @importFrom downloader download
 #' @importFrom utils unzip
 #' @importFrom rgdal readOGR CRS
 #' @importFrom tidyr %>%
 #' @importFrom dplyr rename
+#' @importFrom methods slot
 #'
 #' @description A simple function that will take a dataframe, filter by records inside ANP, and return a 
 #' cleaned dataframe. IMPORTANT: This function only work for lat long data seperated 
@@ -53,7 +54,7 @@ filter_nps <- function(df, park, lat, long) {
   
   coordinates(df) <- c("long", "lat")
   
-  proj4string(df) <- CRS(proj4string(select.bounds))
+  slot(df, "proj4string") <- slot(select.bounds, "proj4string")
   
   output <- over(select.bounds, df, returnList = TRUE) 
   
@@ -65,19 +66,15 @@ filter_nps <- function(df, park, lat, long) {
   }
   
   
+  if(length(output.df) > 1) {
+    message("Calculations complete!")
+  }
+  
   return(output.df)
 
 }
 
 
 
-
-
-
-prac <- read.csv("ebird_mappingloc_20220216 copy.csv", header = TRUE)
-
-prac <- prac %>% rename(LAT = latitude, Longitude = longitude)
-
-meh2 <- filter_nps(prac, "Acadia National Park", lat = "Lat", long = "Longitude")
 
 
