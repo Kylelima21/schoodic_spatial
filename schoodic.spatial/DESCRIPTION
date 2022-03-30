@@ -1,0 +1,17 @@
+Package: schoodic.spatial
+Type: Package
+Title: Schoodic spatial functions
+Version: 0.1.0
+Author: Kyle Lima
+Maintainer: Kyle Lima <klima@schoodicinstitute.org>
+Description: Filters dataframes by records inside National Park Service boundaries.
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    downloader,
+    dplyr,
+    methods,
+    rgdal,
+    sp,
+    tidyr,
+    utils
