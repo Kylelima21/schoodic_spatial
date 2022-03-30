@@ -10,6 +10,8 @@ output:
 ```{r setup, include=FALSE}
 require(rgdal)
 require(utils)
+require(tidyr)
+require(dplyr)
 
 
 nps.bounds <- readOGR("nps_boundary.shp", verbose = FALSE)
@@ -21,6 +23,8 @@ nps.bounds <- readOGR("nps_boundary.shp", verbose = FALSE)
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
 park.list <- as.data.frame(nps.bounds@data$UNIT_NAME)
+
+park.list <- park.list %>% arrange(nps.bounds@data$UNIT_NAME)
 
 knitr::kable(park.list, col.names = "Unit name")
 
